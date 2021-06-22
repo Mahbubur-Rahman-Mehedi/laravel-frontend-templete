@@ -93,8 +93,38 @@
         <!-- Navigation -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/home">
-                    <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
+                <a class="nav-link" href="{{ route('seller.dashboard') }}">
+                    <i class="ni ni-tv-2  text-primary"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('seller.apply.prime') }}">
+                    <i class="ni ni-spaceship  text-primary"></i> Upgrade to Prime Seller!
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('seller.create.sell.post') }}">
+                    <i class="ni ni-bag-17  text-primary"></i> Create Sell Post
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('seller.orders') }}">
+                    <i class="ni ni-archive-2  text-primary"></i> Order List
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('seller.statements') }}">
+                    <i class="ni ni-single-copy-04  text-primary"></i> Statements
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('seller.edit.profile') }}">
+                    <i class="ni ni-ruler-pencil  text-primary"></i> Edit Profile
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('seller.posts') }}">
+                    <i class="ni ni-ungroup  text-primary"></i> My Posts
                 </a>
             </li>
             <li class="nav-item">
@@ -188,7 +218,7 @@
                         <img alt="Image placeholder" src="@yield('profileImage')">
                     </span>
                     <div class="media-body ml-2 d-none d-lg-block">
-                        <span class="mb-0 text-sm  font-weight-bold">Admin Admin</span>
+                        <span class="mb-0 text-sm  font-weight-bold">@yield('profileName')</span>
                     </div>
                 </div>
             </a>
