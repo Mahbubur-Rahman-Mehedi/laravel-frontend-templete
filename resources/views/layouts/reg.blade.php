@@ -39,7 +39,7 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                        <a href="/home">
+                        <a href="/index">
                             <h1><b>VCES</b></h1>
                         </a>
                     </div>
@@ -55,13 +55,13 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="">
+                    <a class="nav-link nav-link-icon" href="/reg">
                         <i class="ni ni-circle-08"></i>
                         <span class="nav-link-inner--text">Register</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="/login">
+                    <a class="nav-link nav-link-icon" href='{{route('login')}}'>
                         <i class="ni ni-key-25"></i>
                         <span class="nav-link-inner--text">Login</span>
                     </a>
