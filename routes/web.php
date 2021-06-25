@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- Route::get('/s', function () {
-    return view('seller/login');
+ Route::get('/home', function () {
+    return view('home');
 });
 
 //admin
@@ -47,19 +49,28 @@ Route::get('/reg', function () {
     return view('seller/sellerRegister');
 });
 // user or buyer
-Route::get('/user/Home', [App\Http\Controllers\UserController::class,'index']);
+Route::get('/user/dashboard', [UserController::class,'dashboard'])->name('user.dashboard');
 
-Route::get('/user/editProfile', [App\Http\Controllers\UserController::class,'edit']);
+Route::get('/user/profile', [UserController::class,'profile'])->name('user.profile');
 
-Route::get('/user/history', [App\Http\Controllers\UserController::class,'history']);
+Route::get('/user/history', [UserController::class,'history'])->name('user.history');
 
-Route::get('/user/register', [App\Http\Controllers\UserController::class,'register']);
+Route::get('/user/details', [UserController::class,'details'])->name('user.details');
+Route::get('/user/follow', [UserController::class,'follow'])->name('user.follow');
 
-Route::get('/user/detailsHistory', [App\Http\Controllers\UserController::class,'detailsHistory'])->name('detailsOrder');
-Route::get('/user/follow', [App\Http\Controllers\UserController::class,'follow']);
+Route::get('/user/orders', [UserController::class,'orders'])->name('user.orders');
+
+Route::get('/user/order', [UserController::class,'order'])->name('user.order');
+Route::post('/user/order', [UserController::class,'orderConfirm']);
+
+Route::get('/user/notification', [UserController::class,'notification'])->name('user.notification');
+
+Route::get('/user/messages', [UserController::class,'messages'])->name('user.messages');
 // Route::get('/user/list', [App\Http\Controllers\UserController::class,'list']);
 // Route::get('/user/create', [App\Http\Controllers\UserController::class,'create'] )->name('user.create');
 // Route::post('/user/create', [App\Http\Controllers\UserController::class,'insert'] )->name('user.insert');
+
+Route::get('/register', [RegistrationController::class,'register'])->name('register');
 
 
 // Home
@@ -83,3 +94,15 @@ Route::get('/home/index','HomeController@home')->name('home.index');
 Route::get('/home/announcement','HomeController@announcement')->name('home.announcement');
 Route::get('/home/postCard','HomeController@postCard')->name('home.postCard');
 Route::get('/home/chatbox','HomeController@chatbox')->name('home.chatbox');
+
+// Route::get('/registration', function () {
+//     return view('registration');
+// });
+
+// Route::get('/user/profile', function () {
+//     return view('user/profile');
+// });
+
+// Route::get('/user/dashboard', function () {
+//     return view('user/dashboard');
+// });
