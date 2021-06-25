@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
     <title>@yield('pageTitle')</title>
 </head>
 
 <body class="clickup-chrome-ext_installed">
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    <form id="logout-form" action="{{ route('logout') }}" method="GET" style="display: none;">
         @csrf
     </form>
         <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
@@ -18,7 +23,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Brand -->
-    <a class="navbar-brand pt-0" href="/home">
+    <a class="navbar-brand pt-0" href="{{ route('adminHome') }}">
         {{-- <img  src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" align="left-center"  margin-left="100" border-left-width: 30px; alt="..."> --}}
         <h1><b>VCES</b></h1>
     </a>
@@ -28,7 +33,7 @@
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                     <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="@yield('profileImage')">
+                    <img alt="Image placeholder" src="{{ asset("admin/adminDP.jpg") }}">
                     </span>
                 </div>
             </a>
@@ -53,9 +58,8 @@
                     <span>Support</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                    <i class="ni ni-user-run"></i>
+                <a href="{{ route('logout') }}" class="dropdown-item">
+                    <i class="ni ni-lock-circle-open"></i>
                     <span>Logout</span>
                 </a>
             </div>
@@ -79,7 +83,7 @@
                 </div>
             </div>
         </div>
-        <!-- Form -->
+        {{-- <!-- Form -->
         <form class="mt-4 mb-3 d-md-none">
             <div class="input-group input-group-rounded input-group-merge">
                 <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
@@ -89,50 +93,37 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </form> --}}
         <!-- Navigation -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/home">
-                    <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
+                <a class="nav-link" href='{{route('adminHome')}}'>
+                    <i class="ni ni-chart-bar-32"></i>Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                    <i class="fab fa-laravel" style="color: #f4645f;"></i>
-                    <span class="nav-link-text" style="color: #f4645f;">{{ __('Laravel Examples') }}</span>
-                </a>
-
-                <div class="collapse show" id="navbar-examples">
-                    <ul class="nav nav-sm flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/profile">
-                                {{ __('User profile') }}
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/user">
-                                {{ __('User Management') }}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/icon">
-                    <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="/map">
-                    <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}
+                <a class="nav-link" href='{{route('adminEditProfile')}}'>
+                    <i class="ni ni-circle-08"></i>Edit Profile
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/table">
-                  <i class="ni ni-bullet-list-67 text-default"></i>
-                  <span class="nav-link-text">Tables</span>
+                <a class="nav-link" href='{{route('adminViewAllUserInfo')}}'>
+                    <i class="ni ni-badge"></i>User Info
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href='{{route('adminViewAllTransaction')}}'>
+                    <i class="ni ni-money-coins"></i>Transaction History
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href='{{route('adminUserReports')}}'>
+                    <i class="ni ni-email-83"></i>User Reports
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href='{{route('adminAnnouncement')}}'>
+                    <i class="ni ni-notification-70"></i>Announcement
                 </a>
             </li>
 
@@ -167,8 +158,8 @@
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
 <div class="container-fluid">
     <!-- Brand -->
-    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/home">@yield('header')</a>
-    <!-- Form -->
+    <p class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"> @yield('header') </p>
+    {{-- <!-- Form -->
     <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
         <div class="form-group mb-0">
             <div class="input-group input-group-alternative">
@@ -178,17 +169,17 @@
                 <input class="form-control" placeholder="Search" type="text">
             </div>
         </div>
-    </form>
+    </form> --}}
     <!-- User -->
     <ul class="navbar-nav align-items-center d-none d-md-flex">
         <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                     <span class="avatar avatar-sm rounded-circle">
-                        <img alt="Image placeholder" src="@yield('profileImage')">
+                        <img alt="Image placeholder" src="{{ asset("admin/adminDP.jpg") }}">
                     </span>
                     <div class="media-body ml-2 d-none d-lg-block">
-                        <span class="mb-0 text-sm  font-weight-bold">Admin Admin</span>
+                        <span class="mb-0 text-sm  font-weight-bold">Admin</span>
                     </div>
                 </div>
             </a>
@@ -196,26 +187,14 @@
                 <div class=" dropdown-header noti-title">
                     <h6 class="text-overflow m-0">Welcome!</h6>
                 </div>
-                <a href="/profile" class="dropdown-item">
+                <a href='{{route('adminEditProfile')}}' class="dropdown-item">
                     <i class="ni ni-single-02"></i>
                     <span>My profile</span>
-                </a>
-                <a href="#" class="dropdown-item">
-                    <i class="ni ni-settings-gear-65"></i>
-                    <span>Settings</span>
-                </a>
-                <a href="#" class="dropdown-item">
-                    <i class="ni ni-calendar-grid-58"></i>
-                    <span>Activity</span>
-                </a>
-                <a href="#" class="dropdown-item">
-                    <i class="ni ni-support-16"></i>
-                    <span>Support</span>
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                    <i class="ni ni-user-run"></i>
+                    <i class="ni ni-lock-circle-open"></i>
                     <span>Logout</span>
                 </a>
             </div>
@@ -276,5 +255,10 @@
     <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Argon JS -->
     <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
 </body>
 </html>

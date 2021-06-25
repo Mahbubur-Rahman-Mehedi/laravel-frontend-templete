@@ -12,7 +12,7 @@
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center mb-4">
-                            <h1 class="text-muted">Sign Up</h1>
+                            <h1 class="text-muted">Signin</h1>
                         </div>
 
 
@@ -37,7 +37,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="'Password'" type="password" value="secret" required>
+                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" type="password" value="" required>
                                 </div>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -52,8 +52,15 @@
                                 </label>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary my-4">'Sign in</button>
+                                <button type="submit" class="btn btn-primary my-4">Sign in</button>
                             </div>
+
+                            <center>
+                                <br>
+                                    <h3>{{session('msg')}}</h3>
+                                <br>
+                            </center>
+
                         </form>
 
                     </div>
@@ -76,4 +83,5 @@
             </div>
         </div>
     </div>
+
 @endsection

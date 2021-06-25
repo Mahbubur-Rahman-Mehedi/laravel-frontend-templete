@@ -1,5 +1,6 @@
 <?php
 
+// use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,15 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- Route::get('/s', function () {
-    return view('seller/login');
-});
-
 //admin
 
-Route::get('/login', 'LoginController@login');
+Route::get('/login', 'LoginController@login')->name('login');
 Route::post('/login', 'LoginController@verify');
 Route::get('/logout', 'LogoutController@index')->name('logout');
+
+
 Route::get('/adminHome', 'AdminHomeController@index')->name('adminHome');
 Route::get('/adminEditProfile', 'AdminHomeController@editProfile')->name('adminEditProfile');
 Route::get('/adminViewAllUserInfo', 'AdminHomeController@viewAllUserInfo')->name('adminViewAllUserInfo');
@@ -43,9 +42,17 @@ Route::get('/seller/orderdetails','SellerController@orderDetails')->name('seller
 Route::get('/seller/editsellpost','SellerController@editSellPost')->name('seller.edit.sell.post');
 Route::get('/seller/editprofile','SellerController@editProfile')->name('seller.edit.profile');
 Route::get('/seller/statementdetails','SellerController@statementDetails')->name('seller.statement.details');
-Route::get('/reg', function () {
-    return view('seller/sellerRegister');
-});
+
+Route::resource('seller/product', ProductController::class);
+
+
+
+
+
+
+
+
+
 // user or buyer
 Route::get('/user/Home', [App\Http\Controllers\UserController::class,'index']);
 
