@@ -16,13 +16,10 @@ use App\Http\Controllers\RegistrationController;
 |
 */
 
-<<<<<<< HEAD
  Route::get('/home', function () {
     return view('home');
 });
 
-=======
->>>>>>> 14756a6b696b4df472734727cf2fdd185223d56c
 //admin
 
 Route::get('/login', 'LoginController@login')->name('login');
